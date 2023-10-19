@@ -77,7 +77,9 @@ function App() {
         <div id="display">{activeKey}</div>
         <div className="drum-pads btn-group">
           {drumPads.map((drumPad) => (
-            <button onClick={() => { playSound(drumPad.text) }} key={drumPad.text} className="drum-pad btn btn-secondary shadow" id={drumPad.keyCode}>
+            <button onClick={() => 
+            { playSound(drumPad.text) }
+            } key={drumPad.text} className="drum-pad btn btn-secondary shadow" id={drumPad.keyCode}>
               {drumPad.text}
               <audio className="clip" id={drumPad.text} src={drumPad.src}></audio>
             </button>
