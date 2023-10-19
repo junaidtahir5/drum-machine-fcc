@@ -1,8 +1,8 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 function App() {
-  const [volume, setVolume] = useState(0.5);
   const [activeKey, setActiveKey] = useState('');
+  const [volume, setVolume] = useState(0.5);
   useEffect(() => {
     const handleKeyPress = (event) => {
       const currentKey = event.key;
@@ -17,7 +17,7 @@ function App() {
     }
   }, []);
 
-  const drumPads = [
+  const drumPads = [ 
     {
       keyCode: 81,
       text: "Q",
@@ -64,14 +64,14 @@ function App() {
       src: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"
     }
   ];
+  
   function playSound(source) {
     const audio = document.getElementById(source)
     audio.pause();
     audio.currentTime = 0;
     audio.play();
     audio.volume = volume;
-    setActiveKey(source)
-
+    setActiveKey(source);
   }
   return (
     <div className="App">
@@ -80,14 +80,21 @@ function App() {
         <br />
         <h4>Volume</h4>
         <br />
-        <input type='range' id='volume' min='0' max='1' step='0.01' value={volume} onChange={(e) => setVolume(parseFloat(e.target.value))} />
+        <input
+          type="range"
+          id="volume"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={(e) => setVolume(parseFloat(e.target.value))}
+        />
         <br />
         <br />
         <div className="drum-pads btn-group">
           {drumPads.map((drumPad) => (
-            <button onClick={() => 
-            { playSound(drumPad.text) }
-            } key={drumPad.text} className="drum-pad btn btn-secondary shadow" id={drumPad.keyCode}>
+            <button onClick={() => { playSound(drumPad.text) }}
+               key={drumPad.text} className="drum-pad btn btn-secondary shadow" id={drumPad.keyCode}>
               {drumPad.text}
               <audio className="clip" id={drumPad.text} src={drumPad.src}></audio>
             </button>
