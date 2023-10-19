@@ -65,8 +65,8 @@ function App() {
   ];
   function playSound(source) {
     const audio = document.getElementById(source)
-    // audio.pause();
-    // audio.currentTime = 0;
+    audio.pause();
+    audio.currentTime = 0;
     audio.play();
     setActiveKey(source)
 
