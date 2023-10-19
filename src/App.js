@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 function App() {
+  const [volume, setVolume] = useState(0.5);
   const [activeKey, setActiveKey] = useState('');
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -68,6 +69,7 @@ function App() {
     audio.pause();
     audio.currentTime = 0;
     audio.play();
+    audio.volume = volume;
     setActiveKey(source)
 
   }
@@ -75,6 +77,12 @@ function App() {
     <div className="App">
       <div id="drum-machine">
         <div id="display">{activeKey}</div>
+        <br />
+        <h4>Volume</h4>
+        <br />
+        <input type='range' id='volume' min='0' max='1' step='0.01' value={volume} onChange={(e) => setVolume(parseFloat(e.target.value))} />
+        <br />
+        <br />
         <div className="drum-pads btn-group">
           {drumPads.map((drumPad) => (
             <button onClick={() => 
